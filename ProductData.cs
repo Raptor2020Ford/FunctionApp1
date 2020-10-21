@@ -9,7 +9,7 @@ namespace FunctionApp1
     public interface IProductData
     {
         Task<Product> AddProduct(Product product);
-        Task<bool> DeleteProduct(int id);
+        Task<bool> DeleteProduct(string id);
         Task<IEnumerable<Product>> GetProducts();
         Task<Product> UpdateProduct(Product product);
     }
@@ -20,24 +20,24 @@ namespace FunctionApp1
         {
             new Product
             {
-                Id = 10,
+                Id = "10",
                 Name = "Strawberries",
                 Description = "16oz package of fresh organic strawberries",
-                Quantity = 1
+                Quantity = "1"
             },
             new Product
             {
-                Id = 20,
+                Id = "20",
                 Name = "Sliced bread",
                 Description = "Load of fresh sliced wheat bread",
-                Quantity = 1
+                Quantity = "1"
             },
             new Product
             {
-                Id = 30,
+                Id = "30",
                 Name = "Apples",
                 Description = "Bag of 7 fresh McIntosh apples",
-                Quantity = 1
+                Quantity = "1"
             }
         };
 
@@ -49,7 +49,7 @@ namespace FunctionApp1
 
         public Task<Product> AddProduct(Product product)
         {
-            product.Id = GetRandomInt();
+            product.Id = ""; GetRandomInt();
             products.Add(product);
             return Task.FromResult(product);
         }
@@ -61,7 +61,7 @@ namespace FunctionApp1
             return Task.FromResult(product);
         }
 
-        public Task<bool> DeleteProduct(int id)
+        public Task<bool> DeleteProduct(string id)
         {
             var index = products.FindIndex(p => p.Id == id);
             products.RemoveAt(index);
